@@ -5,7 +5,7 @@ import { RouteProp } from '@react-navigation/native';
 
 
 type RootStackParamList = {
-    Home: undefined;
+    // Home: undefined;
     EntryEdit: { entryId: number };
     EntryDelete: { entryId: number };
   };
