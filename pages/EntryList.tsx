@@ -30,7 +30,7 @@ const EntryList: React.FC<Props> = ({navigation}) => {
         console.log(response.data); // Process the response data as needed
         setEntries(response.data);
     } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error('Error fetching entries:', error);
     }
     };
 

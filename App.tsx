@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Alert, Button, StyleSheet, Text, View } from 'react-native';
 import EntryList from './pages/EntryList';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -28,7 +28,17 @@ export default function App() {
       <Stack.Navigator initialRouteName="EntryList">
           <Stack.Screen name="EntryList" component={EntryList} />
           <Stack.Screen name="EntryEdit" component={EntryEdit} />
-          <Stack.Screen name="EntryDelete" component={EntryDelete} />
+          <Stack.Screen name="EntryDelete" component={EntryDelete} 
+            options={({ navigation }) => ({
+              headerRight: () => (
+                <Button
+                  onPress={() => Alert.alert('This is a button!')}
+                  title="DELETE"
+                  color="red"
+                />
+              ),
+            })}
+          />
         </Stack.Navigator>
     );
   }
