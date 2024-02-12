@@ -6,6 +6,7 @@ import HomeScreen from './screens/HomeScreen';
 import EntryListScreen from './screens/EntryListScreen';
 import EntryEditScreen from './screens/EntryEditScreen';
 import EntryDeleteScreen from './screens/EntryDeleteScreen';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 export type RootStackParamList = {
@@ -16,14 +17,25 @@ export type RootStackParamList = {
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function App() {
+const EntryStackNavigator = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
+    <Stack.Navigator>
         <Stack.Screen name="EntryList" component={EntryListScreen} />
         <Stack.Screen name="EntryEdit" component={EntryEditScreen} />
         <Stack.Screen name="EntryDelete" component={EntryDeleteScreen} />
       </Stack.Navigator>
+  )
+}
+
+const Tab = createBottomTabNavigator();
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={EntryStackNavigator} />
+        <Tab.Screen name="Settings" component={HomeScreen} />
+      </Tab.Navigator>
     {/* <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
       <StatusBar style="auto" />
