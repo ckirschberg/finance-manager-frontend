@@ -32,7 +32,7 @@ export default function App() {
             options={({ navigation }) => ({
               headerRight: () => (
                 <Button
-                  onPress={() => Alert.alert('This is a button!')}
+                  onPress={() => Alert.alert('For real? :-o')}
                   title="DELETE"
                   color="red"
                 />
