@@ -11,6 +11,8 @@ import { store } from './store/store'
 import { Provider } from 'react-redux'
 import { Counter } from './components/counter';
 import { Categories } from './screens/Categories';
+import SignupScreen from './screens/SignupScreen';
+import LoginScreen from './screens/LoginScreen';
 
 export type RootStackParamList = {
   EntryList: undefined;
@@ -39,6 +41,8 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={EntryStackNavigator} />
         <Tab.Screen name="Settings" component={Categories} />
+        <Tab.Screen name="AuthSignup" component={SignupScreen} />
+        <Tab.Screen name="AuthLogin" component={LoginScreen} />
       </Tab.Navigator>
     {/* <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
