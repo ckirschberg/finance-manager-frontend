@@ -7,8 +7,6 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 type Props = NativeStackScreenProps<RootStackParamList, "EntryEdit">
 
 const EntryEditScreen = ({route, navigation}: Props) => {
-    // const route = useRoute<RouteProp<RootStackParamList, "EntryEdit">>();
-    // console.log(route.params.entryId);
     console.log(route.params.entryId);
     
     
