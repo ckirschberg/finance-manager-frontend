@@ -2,8 +2,7 @@ import { CommonActions, useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import { View, Text, Button } from 'react-native';
-import { RootStackParamList } from '../App';
-
+import { RootStackParamList } from './MainNavigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, "EntryList">
 

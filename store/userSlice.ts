@@ -1,6 +1,7 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { UserQueries } from '../api/userQueries';
+import * as SecureStore from 'expo-secure-store';
 
 interface UserState {
     user: User | null;
@@ -48,7 +49,7 @@ export const signup = createAsyncThunk(
     async (userData: { username: string; password: string }, thunkAPI) => {
         // try {
             const response = UserQueries.signup(userData.username, userData.password)
-            console.log(response);
+            // console.log("userSlice", response);
             return response;
             
             
@@ -61,7 +62,15 @@ export const signup = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        setToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload;
+        },
+        logout: (state) => {
+            state.token = '';
+            SecureStore.setItemAsync('token', '');
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(login.pending, (state) => {
@@ -72,6 +81,7 @@ const userSlice = createSlice({
                 state.loading = false;
                 // state.user = action.payload.user;
                 state.token = action.payload.access_token;
+                SecureStore.setItemAsync('token', state.token || '');
             })
             .addCase(login.rejected, (state, action) => {
                 state.loading = false;
@@ -93,6 +103,7 @@ const userSlice = createSlice({
     },
 });
 
+export const { setToken, logout } = userSlice.actions
 // export const selectUser = (state: RootState) => state.user.user;
 // export const selectToken = (state: RootState) => state.user.token;
 // export const selectLoading = (state: RootState) => state.user.loading;

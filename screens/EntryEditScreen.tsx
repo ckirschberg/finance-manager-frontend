@@ -1,8 +1,8 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
 import React from 'react';
 import { View, Text } from 'react-native';
-import { RootStackParamList } from '../App';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from './MainNavigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, "EntryEdit">
 

@@ -11,6 +11,8 @@ export class UserQueries {
     }
     static async signup(username: string, password: string) {
         const response = await axios.post(this.baseUrl + "signup", { username, password } )
+        // console.log("userQueries", response.data);
+        
         return response.data;
     }
     static async logout() {
