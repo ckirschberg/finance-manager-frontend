@@ -99,6 +99,7 @@ const userSlice = createSlice({
     },
 });
 
+export const { logout } = userSlice.actions
 // export const selectUser = (state: RootState) => state.user.user;
 // export const selectToken = (state: RootState) => state.user.token;
 // export const selectLoading = (state: RootState) => state.user.loading;
