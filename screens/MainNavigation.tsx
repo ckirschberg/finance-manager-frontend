@@ -13,6 +13,7 @@ import LoginScreen from './LoginScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { logout } from '../store/userSlice';
+import { Picture } from '../components/picture';
 
 export type RootStackParamList = {
     EntryList: undefined;
@@ -38,7 +39,7 @@ const EntryStackNavigator = () => {
 
 const MainNavigation = () => {
   const dispatch = useDispatch<AppDispatch>();
-    const isSignedIn = useSelector((state: RootState) => state.users.token);
+    const isSignedIn = true; //useSelector((state: RootState) => state.users.token);
 
     return (
         <NavigationContainer>

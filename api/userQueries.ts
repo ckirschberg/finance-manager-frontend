@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { Category } from '../entities/category';
-import { CreateCategoryDTO } from '../entities/CreateCategoryDTO';
+import { SuperQueries } from './SuperQueries';
 
-export class UserQueries {
-    static baseUrl = 'http://localhost:3000/auth/'
+export class UserQueries extends SuperQueries {
+    static baseUrl = super.baseUrl + '/auth/'
 
     static async login(username: string, password: string) {
         const response = await axios.post(this.baseUrl + "login", { username, password } )
