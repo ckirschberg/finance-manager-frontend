@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { RootState } from './store';
 import { UserQueries } from '../api/userQueries';
+import * as SecureStore from 'expo-secure-store';
 
 interface UserState {
     user: User | null;
