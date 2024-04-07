@@ -14,10 +14,12 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store/store';
 
 export type RootStackParamList = {
-    EntryList: undefined;
-    EntryEdit: { entryId: number };
-    EntryDelete: { entryId: number };
-  };
+  EntryList: undefined;
+  EntryEdit: { entryId: number };
+  EntryDelete: { entryId: number };
+  AuthSignup: undefined;
+  AuthLogin: undefined;
+};
   
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
