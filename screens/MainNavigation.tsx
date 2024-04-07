@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,6 +10,8 @@ import EntryDeleteScreen from './../screens/EntryDeleteScreen';
 import { Categories } from './Categories';
 import SignupScreen from './SignupScreen';
 import LoginScreen from './LoginScreen';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../store/store';
 
 export type RootStackParamList = {
     EntryList: undefined;
@@ -32,16 +34,31 @@ const EntryStackNavigator = () => {
 
 
 const MainNavigation = () => {
+  const dispatch = useDispatch<AppDispatch>();
+    const isSignedIn = true; //useSelector((state: RootState) => state.users.token);
+
     return (
         <NavigationContainer>
-            <Tab.Navigator>
-            <Tab.Screen name="Home" component={EntryStackNavigator} />
-            <Tab.Screen name="Settings" component={Categories} />
-            <Tab.Screen name="AuthSignup" component={SignupScreen} />
-            <Tab.Screen name="AuthLogin" component={LoginScreen} />
-        </Tab.Navigator>
+        { isSignedIn ? (
+            <>
+                <Tab.Navigator screenOptions={({ navigation }) => ({
+                    headerRight: () => (
+                      <Button title="Logout" onPress={() => dispatch(logout())} />
+                    )})}>
+                    <Tab.Screen name="Home" component={EntryStackNavigator} />
+                    <Tab.Screen name="Settings" component={Categories} />
+                </Tab.Navigator>
+            </>
+          ) : (
+            <>
+              <Stack.Navigator>
+                    <Stack.Screen name="AuthSignup" component={SignupScreen} />
+                    <Stack.Screen name="AuthLogin" component={LoginScreen} />
+                </Stack.Navigator>
+            </>
+          )
+        }
       </NavigationContainer>
     );
 };
-
 export default MainNavigation;
