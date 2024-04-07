@@ -61,7 +61,12 @@ export const signup = createAsyncThunk(
 const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: {},
+    reducers: {
+        logout: (state) => {
+            state.token = '';
+            SecureStore.setItemAsync('token', '');
+        },
+    },
     extraReducers: (builder) => {
         builder
             .addCase(login.pending, (state) => {
