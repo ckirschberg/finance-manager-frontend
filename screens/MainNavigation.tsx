@@ -12,6 +12,7 @@ import SignupScreen from './SignupScreen';
 import LoginScreen from './LoginScreen';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store/store';
+import { logout } from '../store/userSlice';
 
 export type RootStackParamList = {
   EntryList: undefined;
