@@ -1,9 +1,10 @@
 import axios from 'axios';
 import { Category } from '../entities/category';
 import { CreateCategoryDTO } from '../entities/CreateCategoryDTO';
+import { SuperQueries } from './SuperQueries';
 
-export class CategoriesAPI {
-    static baseUrl = 'http://localhost:3000/categories'
+export class CategoriesAPI extends SuperQueries{
+    static baseUrl = super.baseUrl + 'categories'
 
     static async fetchAll() {
         const response = await axios.get(this.baseUrl)

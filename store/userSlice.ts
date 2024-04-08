@@ -49,7 +49,7 @@ export const signup = createAsyncThunk(
     async (userData: { username: string; password: string }, thunkAPI) => {
         // try {
             const response = UserQueries.signup(userData.username, userData.password)
-            console.log(response);
+            // console.log("userSlice", response);
             return response;
             
             
@@ -63,13 +63,15 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        setToken: (state, action: PayloadAction<string>) => {
+            state.token = action.payload;
+        },
         logout: (state) => {
             state.token = '';
-            SecureStore.setItemAsync('token', '');
+            console.log("test");
+            
+            SecureStore.deleteItemAsync('token')
         },
-        updateToken: (state, action: PayloadAction<string>) => {
-            state.token = action.payload
-        }
     },
     extraReducers: (builder) => {
         builder
@@ -103,7 +105,7 @@ const userSlice = createSlice({
     },
 });
 
-export const { logout, updateToken } = userSlice.actions
+export const { setToken, logout } = userSlice.actions
 // export const selectUser = (state: RootState) => state.user.user;
 // export const selectToken = (state: RootState) => state.user.token;
 // export const selectLoading = (state: RootState) => state.user.loading;

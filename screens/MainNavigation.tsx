@@ -13,14 +13,15 @@ import LoginScreen from './LoginScreen';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { logout } from '../store/userSlice';
+import { Picture } from '../components/picture';
 
 export type RootStackParamList = {
-  EntryList: undefined;
-  EntryEdit: { entryId: number };
-  EntryDelete: { entryId: number };
-  AuthSignup: undefined;
-  AuthLogin: undefined;
-};
+    EntryList: undefined;
+    EntryEdit: { entryId: number };
+    EntryDelete: { entryId: number };
+    AuthSignup: undefined;
+    AuthLogin: undefined;
+  };
   
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator();
@@ -43,7 +44,7 @@ const MainNavigation = () => {
     return (
         <NavigationContainer>
         { isSignedIn ? (
-            
+            <>
                 <Tab.Navigator screenOptions={({ navigation }) => ({
                     headerRight: () => (
                       <Button title="Logout" onPress={() => dispatch(logout())} />
@@ -51,14 +52,14 @@ const MainNavigation = () => {
                     <Tab.Screen name="Home" component={EntryStackNavigator} />
                     <Tab.Screen name="Settings" component={Categories} />
                 </Tab.Navigator>
-            
+            </>
           ) : (
-            
+            <>
               <Stack.Navigator>
-                  <Stack.Screen name="AuthLogin" component={LoginScreen} />
-                  <Stack.Screen name="AuthSignup" component={SignupScreen} />
+                    <Stack.Screen name="AuthSignup" component={SignupScreen} />
+                    <Stack.Screen name="AuthLogin" component={LoginScreen} />
                 </Stack.Navigator>
-            
+            </>
           )
         }
       </NavigationContainer>
