@@ -1,3 +1,3 @@
 export class SuperQueries {
-    static baseUrl = 'http://192.168.0.2:3000/'
+    static baseUrl = 'http://10.59.130.50:3000/'
 }

@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useEffect, useState } from 'react';
-import { View, TextInput, Button } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
 import { RootStackParamList } from './MainNavigation';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../store/store';
@@ -31,22 +31,56 @@ const SignupScreen = (props: Props) => {
     }, [])
 
     return (
-        <View>
+        <View style={styles.container}>
             <TextInput
+                style={styles.input}
                 placeholder="Username"
                 value={username}
                 onChangeText={setUsername}
             />
             <TextInput
+                style={styles.input}
                 placeholder="Password"
                 secureTextEntry
                 value={password}
                 onChangeText={setPassword}
             />
+
+
+<View style={styles.button}>
             <Button title="Sign Up" onPress={handleSignup} />
-            <Button title="Go to Login" onPress={() => props.navigation.navigate("AuthLogin")} />
+            </View>
+            <Text style={styles.loginText} onPress={() => props.navigation.navigate("AuthLogin")}>Go to Login</Text>
         </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 10,
+        width: '100%',
+    },
+    button: {
+        marginTop: 10,
+        padding: 10,
+        width: '100%',
+        // backgroundColor: 'blue',
+    },
+    loginText: {
+        marginTop: 20,
+        color: 'blue',
+        fontSize: 16,
+    },
+});
 
 export default SignupScreen;

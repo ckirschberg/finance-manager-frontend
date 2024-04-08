@@ -34,7 +34,7 @@ const EntryListScreen = (props: Props) => {
             {camera ? <Picture setCamera={setCamera} setPhotoToDisplay={setPhotoToDisplay}></Picture> : <>
           
           {/* Here I am just showing a photo from the first element to show how to use the photo */}
-            <Image source={{uri: entries[0].photo}} style={{width: 400, height: 400}} />
+            <Image source={{uri: entries[0]?.photo}} style={{width: 400, height: 400}} />
 
 
             <Button title="Open camera" onPress={() => setCamera(true)}/>

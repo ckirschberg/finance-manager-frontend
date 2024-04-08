@@ -68,7 +68,9 @@ const userSlice = createSlice({
         },
         logout: (state) => {
             state.token = '';
-            SecureStore.setItemAsync('token', '');
+            console.log("test");
+            
+            SecureStore.deleteItemAsync('token')
         },
     },
     extraReducers: (builder) => {

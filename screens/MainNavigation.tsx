@@ -39,7 +39,7 @@ const EntryStackNavigator = () => {
 
 const MainNavigation = () => {
   const dispatch = useDispatch<AppDispatch>();
-    const isSignedIn = true; //useSelector((state: RootState) => state.users.token);
+    const isSignedIn = useSelector((state: RootState) => state.users.token);
 
     return (
         <NavigationContainer>
