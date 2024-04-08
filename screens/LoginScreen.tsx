@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, TextInput, Button, AppState, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../store/userSlice';
+import { login, updateToken } from '../store/userSlice';
 import { AppDispatch, RootState } from '../store/store';
+import * as SecureStore from 'expo-secure-store';
 
 const LoginScreen = () => {
     const [username, setUsername] = useState('');
@@ -14,6 +15,16 @@ const LoginScreen = () => {
     const handleLogin = () => {
         dispatch(login({username: username, password: password}))
     };
+
+    useEffect(() => {
+        async function readFromSecureStore() {
+            const token = await SecureStore.getItemAsync('token');
+            token && dispatch(updateToken(token))
+        }
+        readFromSecureStore();
+    }, [])
+
+
 
     return (
         <View>

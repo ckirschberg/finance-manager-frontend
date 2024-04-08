@@ -10,8 +10,8 @@ import EntryDeleteScreen from './../screens/EntryDeleteScreen';
 import { Categories } from './Categories';
 import SignupScreen from './SignupScreen';
 import LoginScreen from './LoginScreen';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../store/store';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../store/store';
 import { logout } from '../store/userSlice';
 
 export type RootStackParamList = {
@@ -38,12 +38,12 @@ const EntryStackNavigator = () => {
 
 const MainNavigation = () => {
   const dispatch = useDispatch<AppDispatch>();
-    const isSignedIn = true; //useSelector((state: RootState) => state.users.token);
+    const isSignedIn = useSelector((state: RootState) => state.users.token);
 
     return (
         <NavigationContainer>
         { isSignedIn ? (
-            <>
+            
                 <Tab.Navigator screenOptions={({ navigation }) => ({
                     headerRight: () => (
                       <Button title="Logout" onPress={() => dispatch(logout())} />
@@ -51,14 +51,14 @@ const MainNavigation = () => {
                     <Tab.Screen name="Home" component={EntryStackNavigator} />
                     <Tab.Screen name="Settings" component={Categories} />
                 </Tab.Navigator>
-            </>
+            
           ) : (
-            <>
+            
               <Stack.Navigator>
-                    <Stack.Screen name="AuthSignup" component={SignupScreen} />
-                    <Stack.Screen name="AuthLogin" component={LoginScreen} />
+                  <Stack.Screen name="AuthLogin" component={LoginScreen} />
+                  <Stack.Screen name="AuthSignup" component={SignupScreen} />
                 </Stack.Navigator>
-            </>
+            
           )
         }
       </NavigationContainer>
