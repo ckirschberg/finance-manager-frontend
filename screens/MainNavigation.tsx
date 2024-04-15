@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../store/store';
 import { logout } from '../store/userSlice';
 import { Picture } from '../components/picture';
+import TodoScreen from '../todoQueries/TodoScreen';
 
 export type RootStackParamList = {
     EntryList: undefined;
@@ -55,10 +56,11 @@ const MainNavigation = () => {
             </>
           ) : (
             <>
-              <Stack.Navigator>
+            <TodoScreen />
+              {/* <Stack.Navigator>
                     <Stack.Screen name="AuthSignup" component={SignupScreen} />
                     <Stack.Screen name="AuthLogin" component={LoginScreen} />
-                </Stack.Navigator>
+                </Stack.Navigator> */}
             </>
           )
         }
