@@ -15,6 +15,9 @@ import { AppDispatch, RootState } from '../store/store';
 import { logout } from '../store/userSlice';
 import { Picture } from '../components/picture';
 import TodoScreen from '../todoQueries/TodoScreen';
+import { IconButton } from "native-base";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
+
 
 export type RootStackParamList = {
     EntryList: undefined;
@@ -40,7 +43,7 @@ const EntryStackNavigator = () => {
 
 const MainNavigation = () => {
   const dispatch = useDispatch<AppDispatch>();
-    const isSignedIn = useSelector((state: RootState) => state.users.token);
+    const isSignedIn = true; //useSelector((state: RootState) => state.users.token);
 
     return (
         <NavigationContainer>
@@ -48,7 +51,11 @@ const MainNavigation = () => {
             <>
                 <Tab.Navigator screenOptions={({ navigation }) => ({
                     headerRight: () => (
-                      <Button title="Logout" onPress={() => dispatch(logout())} />
+                      <IconButton colorScheme="indigo" style={{marginRight: 10}} key={"outline"} 
+                        onPress={() => dispatch(logout())} variant={"outline"} _icon={{
+                          as: AntDesign,
+                          name: "logout"
+                        }} />
                     )})}>
                     <Tab.Screen name="Home" component={EntryStackNavigator} />
                     <Tab.Screen name="Settings" component={Categories} />
@@ -56,11 +63,11 @@ const MainNavigation = () => {
             </>
           ) : (
             <>
-            <TodoScreen />
-              {/* <Stack.Navigator>
-                    <Stack.Screen name="AuthSignup" component={SignupScreen} />
-                    <Stack.Screen name="AuthLogin" component={LoginScreen} />
-                </Stack.Navigator> */}
+            {/* <TodoScreen /> */}
+              <Stack.Navigator>
+                  <Stack.Screen name="AuthSignup" component={SignupScreen} />
+                  <Stack.Screen name="AuthLogin" component={LoginScreen} />
+              </Stack.Navigator>
             </>
           )
         }

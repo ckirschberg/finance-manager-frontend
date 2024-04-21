@@ -33,6 +33,7 @@ export const login = createAsyncThunk(
     'user/login',
     async (credentials: { username: string; password: string }, thunkAPI) => {
         // try {
+            
             const response = await UserQueries.login(credentials.username, credentials.password);
             console.log(response);
             return response;

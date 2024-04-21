@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import MainNavigation from './screens/MainNavigation';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import TodoScreen from './todoQueries/TodoScreen';
+import { Box, NativeBaseProvider } from "native-base";
 
 // Create a client
 const queryClient = new QueryClient()
@@ -13,7 +14,9 @@ export default function App() {
   return (
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <MainNavigation />  
+          <NativeBaseProvider>
+            <MainNavigation />  
+          </NativeBaseProvider>
       </QueryClientProvider>
     </Provider>
   );
